@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="<%= placeSent %>">
+    <div class="news">
+        <table>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="/<%= placeSent %>/<%= gameClass %>/<%= tile-5 %>">↑</a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/<%= placeSent %>/<%= gameClass %>/<%= tile-1 %>">←</a>
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br></td>
+                <td>
+                    <a href="/<%= placeSent %>/<%= gameClass %>/<%= tile+1 %>">→</a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="/<%= placeSent %>/<%= gameClass %>/<%= tile+5 %>">↓</a>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="mainstart">
+        <h2>You continue... Where next?</h2>
+        <img src="../../<%= gameClass %>.png" height="500px" alt="not working :)"/>
+    </div>
+</body>
+</html>
