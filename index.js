@@ -8,6 +8,7 @@ app.use(express.static(__dirname + '/public'));
 
 let random_number = 0
 let boss_number = 0
+let boss_array = []
 
 function randomTile(){
     random_number = Math.floor((Math.random() * 25)+ 1);
@@ -17,7 +18,13 @@ function bossTile(){
     boss_number = Math.floor((Math.random() * 25)+ 1);
     if (boss_number == random_number){
         bossTile()
-    } else{}
+    } else{
+        boss_array.push(boss_number)
+    }
+}
+
+function bossTiles(){
+    for (var i = 1; i < 4; i++) bossTile(i);
 }
 
 app.get("/", (req, res) => {
@@ -33,8 +40,9 @@ app.get("/:location/:class", (req, res) => {
     const location = req.params["location"];
     const gameClass = req.params["class"];
     randomTile()
-    bossTile()
-    console.log("Boss tile is", boss_number)
+    boss_array = []
+    bossTiles()
+    console.log("Boss tile is", boss_array)
     console.log("Winning tile is",random_number)
     // const prefix = "../"
     res.render("start", {placeSent: location, gameClass:gameClass});
@@ -47,10 +55,9 @@ app.get("/:location/:class/:number", (req, res) => {
     // const prefix = "../"
     if (number === random_number) {
         res.render("win", {placeSent: location, gameClass:gameClass, tile: number});
-    }else if(number === boss_number){
+    } else if(boss_array.includes(number)){
         res.render("boss", {placeSent: location, gameClass:gameClass, tile: number});
-    }
-    else if (number === 6 || number === 11 || number === 16) {
+    } else if (number === 6 || number === 11 || number === 16) {
         res.render("leftedge", {placeSent: location, gameClass:gameClass, tile: number});
     } else if (number === 2 || number === 3 || number === 4) {
         res.render("topedge", {placeSent: location, gameClass:gameClass, tile: number});
